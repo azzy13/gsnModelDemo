@@ -301,6 +301,32 @@ to the value of the sensor.''';
                     label:Control_System;
                 }
             }
+            goal G29
+            {
+                uuid:"042db4a2-d32b-49a2-b2f0-dd4eb3e66f1f";
+                summary:'''Connection between the car and the server is secure''';
+                label:Control_System;
+                assumption A8
+                {
+                    uuid:"70fc3478-2c9c-40bd-91e7-8a420bc5c851";
+                    summary:'''The server works on the Raspberry Pi and can transmit camera data, ultrasonic data, etc. to the client, and it
+can also receive commands from the client.''';
+                    label:Control_System;
+                }
+                assumption A9
+                {
+                    uuid:"3d5a259b-a198-4385-bf86-84cf472dec39";
+                    summary:'''The client connects to the server through TCP, which receives the video stream from the server, and other
+commands. And it also sends commands to the server to control the car.''';
+                    label:Control_System;
+                }
+                solution Sn14
+                {
+                    uuid:"2540436a-72a1-45de-89fe-5de9fd4fe540";
+                    summary:'''Testing connection''';
+                    label:Control_System;
+                }
+            }
         }
         goal G22
         {
