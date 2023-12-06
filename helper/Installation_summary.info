@@ -1,0 +1,11 @@
+Installation of the car 
+- Raspberry Pi on the board 
+- DC motors on 4 corners 
+- connect wheels with the DC motors 
+- Place line tracking module on the front and connect to the board 
+- Connect the connection board with raspberry pi and the car board 
+- Install batteries 
+- Install the servo arm on the car 
+- Attach the camera on the servo arm
+- Connect ultrasonic module on the car board and connect to the connection board 
+- Run tests

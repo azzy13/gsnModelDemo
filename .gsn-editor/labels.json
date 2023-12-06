@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Component",
+    "description": "",
+    "isGroup": false
+  },
+  {
+    "name": "Model",
+    "description": "",
+    "isGroup": false
+  },
+  {
+    "name": "Perception",
+    "description": "",
+    "isGroup": false
+  },
+  {
+    "name": "Power",
+    "description": "",
+    "isGroup": false
+  }
+]

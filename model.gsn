@@ -1,0 +1,189 @@
+GOALS F1_10_car
+{
+    goal G1
+    {
+        uuid:'';
+        summary:'''Computer operating properly (COP) is valid. The car effectively reaches its target, adhering to the properties of safety and liveness requirements.''';
+        context C1
+        {
+            uuid:"06df77ea-1c59-4ef5-a61a-7bf96adc066b";
+            summary:'''Mission Objective:  Reach the end of the line of the race track (finish one lap) while satisfying the safety and liveness requirements.  Time limit based on battery life (3 hours).''';
+        }
+        assumption A1
+        {
+            uuid:"76ca6ba9-9306-4445-9999-fcce43237630";
+            summary:'''Car is fully operational, no degradation present, weather is within operational limits (wind and wind gusts, precipitation, fog).
+
+
+Obstructions: A random closed loop race track with 3 lanes and walls on the left and right side of the track
+
+
+Weather:
+- Wind speed 0-5 mph, gusts 7 mph
+- Sunny day, high visibility
+''';
+        }
+        context C2
+        {
+            uuid:"4f6e57c6-35d3-4db4-99ee-f2875e9b79f8";
+            summary:'''Platform constraints:
+Battery Life
+- 3 hours
+Mobile Capabilities
+- Max Velocity: 2 m/s''';
+        }
+        assumption A2
+        {
+            uuid:"6071d730-063e-49f4-80b6-6a16e691e543";
+            summary:'''The race track is a closed loop track. There is no path obstruction and the track is not slippery (wet, icy, oily and debris).''';
+        }
+        assumption A3
+        {
+            uuid:"a77a3ae5-a228-434f-9d8c-ce2461f98627";
+            summary:'''There are no major random changes in temperature or fluctuations in power supply, ensuring robustness''';
+        }
+        goal G2
+        {
+            uuid:"19346568-38df-4411-80ed-cb482db340fe";
+            summary:'''All hazards have been identified and mitigated''';
+            label:Component;
+            goal G6
+            {
+                uuid:"99d4cf17-b019-4e37-8c1d-ebdb7af0bf51";
+                summary:'''All components are functional and working as intended''';
+                label:Component;
+                goal G7
+                {
+                    uuid:"3d918112-fb43-4150-8b59-3999033b4af6";
+                    summary:'''Communication between the board and Raspberry Pi is functional, no malfunctions found''';
+                    label:Component;
+                    goal G8
+                    {
+                        uuid:"b14f87b2-4b90-4390-8cf6-3c1ea7580478";
+                        summary:'''Smart Car Board is functional''';
+                        label:Component;
+                        solution Sn2
+                        {
+                            uuid:"60ef46d9-9d5a-4f47-8cc3-c4d159342046";
+                            summary:'''Implemened error-checking protocols for communication''';
+                            label:Component;
+                        }
+                        solution Sn3
+                        {
+                            uuid:"bf051342-846e-4193-a91b-c361b9800638";
+                            summary:'''No fluctuations in voltage supply causing instability or damage to the component''';
+                            label:Component;
+                        }
+                    }
+                    goal G9
+                    {
+                        uuid:"c42b3cd7-3ecc-461e-a213-0c5b5390d4a2";
+                        summary:'''Raspberry Pi is functional''';
+                        label:Component;
+                        ref_solution: G8.Sn2;
+                        ref_solution: G8.Sn3;
+                        goal G10
+                        {
+                            uuid:"66d4e573-146c-465d-8b73-26e4daad43ce";
+                            summary:'''No Software Crashes or Instability''';
+                            label:Component;
+                            solution Sn4
+                            {
+                                uuid:"777a4b12-fa6a-4d5e-912e-27e924951cbe";
+                                summary:'''Utilize system monitoring tools to detect and address memory leaks or resource-intensive processes''';
+                                label:Component;
+                            }
+                        }
+                    }
+                    assumption A5
+                    {
+                        uuid:"06585c6d-d159-4315-84d8-014696d20de0";
+                        summary:'''No incompatibility or conflicts between the components''';
+                        label:Component;
+                    }
+                }
+                strategy S1
+                {
+                    uuid:"e7ac3890-cb93-471a-aac5-cbc28a882d25";
+                    summary:'''Regular maintenance and replacement of worn parts before critical failure occurs.''';
+                    label:Component;
+                    goal G11
+                    {
+                        uuid:"58a76b72-b4fe-49c1-85ce-cd9801d77085";
+                        summary:'''Servo arms and wheels are functioning as expected''';
+                        label:Component;
+                        solution Sn5
+                        {
+                            uuid:"a0f70000-0d5a-477b-b3f7-8c713dccdadf";
+                            summary:'''Components inspected''';
+                            label:Component;
+                            artifact:"component_inspection.help";
+                            status:Approved;
+                        }
+                    }
+                    goal G12
+                    {
+                        uuid:"70ed4851-7aff-4654-91c4-d28e14448cc1";
+                        summary:'''DC motors are functioning as expected''';
+                        label:Component;
+                        ref_solution: G11.Sn5;
+                        ref_solution: G7.G8.Sn3;
+                    }
+                }
+                ref_goal: G4;
+            }
+        }
+        goal G3
+        {
+            uuid:"a2fdd704-81b6-4052-88c2-832a284cbc82";
+            summary:'''The embedded world model represents the belief of the environment.''';
+            label:Model;
+            goal G5
+            {
+                uuid:"e51df741-edc3-4752-81e7-1ac4f7ece048";
+                summary:'''Small prediction errors indicate the world is evolving as expected''';
+                label:Model;
+                context C3
+                {
+                    uuid:"0dc2634f-1f6e-4047-9e4b-22dd1cc219ed";
+                    summary:'''Large prediction errors indicate surprise, which may be due to errors in sensing or interpretation, or unexpected changes in the world''';
+                    label:Model;
+                }
+                solution Sn1
+                {
+                    uuid:"c74dc0fb-7b28-400f-bab9-10858490dd8b";
+                    summary:'''Test results ''';
+                    label:Model;
+                    artifact:"test_result_world_model.py";
+                }
+            }
+        }
+        goal G4
+        {
+            uuid:"366d1bdc-c437-4f93-ad75-c421456323a8";
+            summary:'''Power source is live and safe''';
+            label:Power;
+            strategy S2
+            {
+                uuid:"624bb25c-9e25-4fea-bc9f-c4adc45c4199";
+                summary:'''Implement proper cooling system for the car to deal with climate changes and heat buildup due to processing''';
+                label:Power;
+                goal G13
+                {
+                    uuid:"2a8f8d91-bfbd-40a5-ab33-e91177512335";
+                    summary:'''Battery is not overcharged, overheating, has physical damage or chemical leakage''';
+                    label:Component;
+                    label:Power;
+                    solution Sn6
+                    {
+                        uuid:"b958a769-e8ae-4f84-9f5f-cc40bc4ddd3a";
+                        summary:'''Report ''';
+                        label:Component;
+                        label:Power;
+                        artifact:"report.txt";
+                    }
+                }
+            }
+        }
+    }
+}

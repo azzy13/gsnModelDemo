@@ -1,0 +1,12 @@
+[{
+    "summary": "Computer operating properly (COP) is valid. The car effectively reaches its target, adhering to the properties of safety and liveness requirements.",
+    "name": "G1",
+    "solvedBy": [],
+    "id": "F1_10_car/G1",
+    "type": "Goal",
+    "uuid": "",
+    "info": "",
+    "artifacts": [],
+    "labels": [],
+    "inContextOf": []
+}]

@@ -1,0 +1,27 @@
+List of components
+1- Smart Car Board for Raspberry Pi
+2- Transmission parts - Servo arm package 2, DC motors 4, wheels 4
+3- Electronic parts - Line tracking module, Camera, HC-SR04 Ultrasonic Module, Connection Board 
+4- Battery 
+5- Raspberry Pi 
+
+Line Tracking Module
+A line tracking module is a component used in robotics and automation projects to detect lines on the ground. 
+It's made up of an infrared light sensor and an infrared LED. The sensor measures the reflected infrared light 
+to determine the reflectivity of a surface.The line tracing function of the car mainly uses an infrared module. 
+When the sensor detects black line, the corresponding LED will light up, which controls the car to move according
+to the value of three sensors.
+
+Ultrasonic sensor
+The compact ultrasonic sensor module detects objects using ultrasonic waves. The ultrasonic module
+is controlled by the servo. The servo rotates to the left, middle and right repeatedly, so that the ultrasonic
+module measures the distance of obstacles on the left, middle and right directions. And then it controls the
+car to move according to different distances.
+
+Server
+The server works on the Raspberry Pi and can transmit camera data, ultrasonic data, etc. to the client, and it
+can also receive commands from the client.
+
+Client
+The client connects to the server through TCP, which receives the video stream from the server, and other
+commands. And it also sends commands to the server to control the car.
