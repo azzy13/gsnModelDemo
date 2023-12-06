@@ -2,7 +2,7 @@ GOALS F1_10_car
 {
     goal G1
     {
-        uuid:'';
+        uuid:"626685b5-42ea-4ea0-a270-bdc2ddbfa414";
         summary:'''Computer operating properly (COP) is valid. The car effectively reaches its target, adhering to the properties of safety and liveness requirements.''';
         context C1
         {
