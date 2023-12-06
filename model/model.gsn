@@ -185,5 +185,195 @@ Mobile Capabilities
                 }
             }
         }
+        goal G14
+        {
+            uuid:"1abcb237-a7bf-442d-8ce7-1b18f8b4f676";
+            summary:'''Perception system operates within expected parameters''';
+            label:Perception;
+            goal G15
+            {
+                uuid:"ac663c06-c573-4847-b21d-6d632a2b241d";
+                summary:'''The ultrasonic sensor system consistently detects obstacles, ensuring safe navigation for the car''';
+                label:Component;
+                label:Perception;
+                solution Sn7
+                {
+                    uuid:"17044778-90b1-4681-ac9e-f80fc23f1a02";
+                    summary:'''Simulation testing ultrasonic sensor''';
+                    label:Perception;
+                    artifact:"sim_ultrasonic.py";
+                }
+                context C4
+                {
+                    uuid:"59276055-ed81-42cb-bff5-0aad5c92b817";
+                    summary:'''The compact ultrasonic sensor module detects objects using ultrasonic waves. The ultrasonic module
+is controlled by the servo. The servo rotates to the left, middle and right repeatedly, so that the ultrasonic
+module measures the distance of obstacles on the left, middle and right directions. And then it controls the
+car to move according to different distances.''';
+                    label:Component;
+                    label:Perception;
+                }
+            }
+            goal G16
+            {
+                uuid:"30badb87-4f0e-4dcd-ba3a-bfe838f496c7";
+                summary:'''The Line Tracking Module system detects the lines on the track and the car navigates through the track in an appropriate lane''';
+                label:Component;
+                label:Perception;
+                context C5
+                {
+                    uuid:"fb02647e-d5b1-4498-82a0-ab1f639f449c";
+                    summary:'''The sensor measures the reflected infrared light 
+to determine the reflectivity of a surface.When the sensor detects black line, the corresponding LED will light up, which controls the car to move according
+to the value of the sensor.''';
+                    label:Component;
+                    label:Perception;
+                }
+                solution Sn8
+                {
+                    uuid:"e8d5cdf4-cc66-4360-b8e5-150f4a7684bd";
+                    summary:'''Simulation testing line tracking sensor''';
+                    label:Perception;
+                    artifact:"sim_line_tracking.py";
+                }
+            }
+            goal G17
+            {
+                uuid:"65890136-6bad-4754-a0ab-5625f622f70c";
+                summary:'''Optical perception system operates within expected parameters''';
+                label:Component;
+                label:Perception;
+                goal G18
+                {
+                    uuid:"59f00a2f-b3ec-4713-8bf0-50f55e973525";
+                    summary:'''The camera can effectively identify objects at a range of 50m''';
+                    label:Component;
+                    label:Perception;
+                    solution Sn9
+                    {
+                        uuid:"de71df03-cc94-4830-84f7-a3d977288f46";
+                        summary:'''Simulation testing camera''';
+                        label:Perception;
+                        artifact:"sim_camera.py";
+                    }
+                }
+            }
+            assumption A4
+            {
+                uuid:"34df02d9-098c-449f-af94-80cee8e4990f";
+                summary:'''The component is inspected and maintained working as expected''';
+                label:Component;
+                label:Perception;
+            }
+        }
+        goal G19
+        {
+            uuid:"09332f32-4691-42d2-bc90-762b1bd6c18d";
+            summary:'''The car maintains precise control, responding accurately to commands''';
+            label:Control_System;
+            goal G20
+            {
+                uuid:"c9389bc1-adef-4344-b1c8-0da4c16b4521";
+                summary:'''The low level control system maintains precise control, enhancing stability and maneuverability''';
+                label:Control_System;
+                assumption A6
+                {
+                    uuid:"0fc2e21b-da7e-4f01-88ae-b74200ec2e35";
+                    summary:'''There is an option or way for fast(er) interaction (eg. heading change, e-stop) to support obstacle avoidance''';
+                    label:Control_System;
+                }
+                solution Sn10
+                {
+                    uuid:"562abdfa-d129-45e7-98d8-bfd20398c9a5";
+                    summary:'''Simulation testing low level control system''';
+                    label:Control_System;
+                }
+            }
+            goal G21
+            {
+                uuid:"c7fe5265-4841-4e6e-b669-3843a200a0ab";
+                summary:'''The perception system works with various sensors and accurately decides the path''';
+                label:Control_System;
+                solution Sn11
+                {
+                    uuid:"2a940a64-be87-4d1c-a0ad-3cf92a43dc4b";
+                    summary:'''Simulation testing of cumulative sensor system''';
+                    label:Control_System;
+                }
+            }
+        }
+        goal G22
+        {
+            uuid:"47f8b878-afde-4414-b614-b12c70d88c3d";
+            summary:'''High level autonomy''';
+            goal G23
+            {
+                uuid:"8de69f24-b0af-4f0b-8d2a-8d38c276b1a9";
+                summary:'''Mitigation actions works as expected''';
+                label:Mitigate;
+                justification J1
+                {
+                    uuid:"0156febe-1b3c-49c8-be40-fce6a5021ae1";
+                    summary:'''All sensors are calibrated properly''';
+                    label:Mitigate;
+                }
+                goal G26
+                {
+                    uuid:"b85e69d7-bf7e-46a6-ad95-13bf8c04dea1";
+                    summary:'''Failsafe mitigation''';
+                    label:Mitigate;
+                    solution Sn13
+                    {
+                        uuid:"e2ab522e-d8c5-4378-bbd1-b777c8937ea8";
+                        summary:'''Sim test''';
+                        label:Mitigate;
+                    }
+                }
+                goal G27
+                {
+                    uuid:"617f0523-e838-4366-84d2-9308e4fae6c4";
+                    summary:'''Car can operate with one DC motor out''';
+                    label:Mitigate;
+                    justification J2
+                    {
+                        uuid:"386f420c-8226-4026-82ee-0b96bc0be265";
+                        summary:'''Car turns by manipulating the values of RPM using the DC motors. If the front left wheel is out then to turn left you can increase the RPM of right side wheels and decrease the RPM of the left lower wheel''';
+                        label:Mitigate;
+                    }
+                    ref_solution: G26.Sn13;
+                }
+                goal G28
+                {
+                    uuid:"0830c4bf-0be9-4c52-93b9-714c2566b1a2";
+                    summary:'''Car can stop within 5 seconds of reversing the rotation of the wheels''';
+                    label:Mitigate;
+                    ref_solution: G26.Sn13;
+                }
+            }
+            goal G24
+            {
+                uuid:"2be7c718-a4c1-49e5-9b71-70442c98bf3e";
+                summary:'''Mission execution works as expected''';
+                label:Mission;
+                goal G25
+                {
+                    uuid:"28b18090-1fad-4bcc-867b-0ac32b598f3b";
+                    summary:'''Performs a lap around the closed loop track''';
+                    label:Mission;
+                    solution Sn12
+                    {
+                        uuid:"0938053a-3cb9-4b8d-a364-ea302e889e3b";
+                        summary:'''Test drive report''';
+                        label:Mission;
+                    }
+                    assumption A7
+                    {
+                        uuid:"0492ccf6-1a46-4db9-8c29-8f4262de0d84";
+                        summary:'''Track is a proper closed loop''';
+                        label:Mission;
+                    }
+                }
+            }
+        }
     }
 }
