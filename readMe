@@ -1,0 +1,9 @@
+How to view the model
+
+1- Install 'GSN Assurance' extension in vscode.
+2- This extension requires a Java 8+ installation available in path as java (or via the JAVA_HOME env. var). 
+A version that's confirmed to work is: openjdk version "11.0.20.1" 2023-08-24
+3- Navigate to the 'model' folder and open model.gsn 
+4- Press Ctrl+Shift+P (on Windows) and search for 'GSN:Graph View'. This will visualize the model on a new tab.
+5- To understand how the tool works better, the extension readMe also has a couple videos demonstrating the same.
+
